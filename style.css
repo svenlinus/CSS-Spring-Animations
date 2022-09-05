@@ -1,1 +1,55 @@
+#graph > canvas {
+  border-radius: 12px;
+  margin: 40px 0;
+  display: block;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%), 0 1px 2px rgb(0 0 0 / 10%) !important;
+  border: 1px solid #435162;
+  padding: 20px;
+  background-color: #3a4656;
+}
 
+#container {
+  margin: auto;
+  width: 600px;
+}
+
+.row-item {
+  display: flex;
+}
+
+.row-item > span {
+  color: white;
+  margin: auto 15px;
+}
+
+.slider-value {
+  margin-right: 20px;
+  margin-left: 0;
+  width: 4ch;
+  text-align: center;
+}
+
+input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 2px;
+  border-radius: 5px;
+  outline: 0;
+  margin: 20px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  transform: scale(1);
+  transition: transform 200ms;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.5);
+}
+
+body {
+  background-color: rgb(44 56 72);
+  font: 400 14px / 20px Source Sans Pro, sans-serif;
+}

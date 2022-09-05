@@ -7,21 +7,36 @@
     <title>replit</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="script.js"></script>
+    <script src="graphing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
 </head>
 
 <body>
-    <div class="score-group">
-        <h1 class="label">Team 1</h1>
-        <div class="score-container">
-            <h1 class="score">0</h1>
+    <div id="container">
+        <div id="graph"></div>
+        <div class="row-item">
+            <span class="slider-value" id="spring-value">0.1</span>
+            <input id="spring-force" type="range" min="0.02" max="2" value="0.1" class="slider" step="0.01" id="myRange">
+            <span>Spring force</span>
         </div>
-    </div>
-    <div class="score-group">
-        <h1 class="label">Team 2</h1>
-        <div class="score-container">
-            <h1 class="score">0</h1>
+        <div class="row-item">
+            <span class="slider-value" id="damp-value">0.1</span>
+            <input id="spring-damp" type="range" min="0" max="1" value="0.1" class="slider" step="0.01" id="myRange">
+            <span>Damping force</span>
         </div>
+        <div class="row-item">
+            <span class="slider-value" id="velocity-value">0</span>
+            <input id="init-velocity" type="range" min="-10" max="10" value="0" class="slider" step="0.2" id="myRange">
+            <span>Initial velocity</span>
+        </div>
+        <div class="row-item">
+            <span class="slider-value" id="position-value">10</span>
+            <input id="init-position" type="range" min="-10" max="10" value="10" class="slider" step="0.2" id="myRange">
+            <span>Initial position</span>
+        </div>
+        <div class="output"></div>
     </div>
+    <script src="input.js"></script>
 </body>
 
 </html>
