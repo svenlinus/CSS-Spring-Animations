@@ -17,10 +17,10 @@ function drawAxes() {
 
 function drawGridlines(nx, ny) {
   const origin = worldToScreen(0, 0);
-  for(let i = 0; i <= ymax + 3*ny; i += ny) {
+  for(let i = 0; i <= ymax-ymin + 3*ny; i += ny) {
       line(0, origin.j + i/ystep, width, origin.j + i/ystep);
   }
-  for(let i = 0; i >= ymin - 3*ny; i -= ny) {
+  for(let i = 0; i >= -ymax+ymin; i -= ny) {
       line(0, origin.j + i/ystep, width, origin.j + i/ystep);
   }
   for(let i = 0; i <= xmax + 3*ny; i += nx) {

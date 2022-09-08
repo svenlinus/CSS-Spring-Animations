@@ -41,3 +41,36 @@ function updatePosition(event) {
   val.innerText = initPosition;
   renderSpringGraph();
 }
+
+const maxVelocityInput = document.getElementById('max-velocity');
+
+maxVelocityInput.addEventListener('input', updateMaxVelocity);
+
+function updateMaxVelocity(event) {
+  maxVelocity = Number(event.target.value);
+  const val = document.getElementById('max-velocity-value');
+  val.innerText = maxVelocity;
+  renderSpringGraph();
+}
+
+const qualityInput = document.getElementById('quality');
+
+qualityInput.addEventListener('input', updateQuality);
+
+function updateQuality(event) {
+  quality = pow(2, (3-Number(event.target.value)));
+  const val = document.getElementById('quality-value');
+  val.innerText = 100 / quality + '%';
+  renderSpringGraph();
+}
+
+const exitPointInput = document.getElementById('exit-point');
+
+exitPointInput.addEventListener('input', updateExit);
+
+function updateExit(event) {
+  exitPoint = event.target.value;
+  const val = document.getElementById('exit-point-value');
+  val.innerText = exitPoint
+  renderSpringGraph();
+}

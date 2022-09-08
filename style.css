@@ -1,16 +1,21 @@
 #graph > canvas {
-  border-radius: 12px;
-  margin: 40px 0;
+  margin: 0;
+  margin-bottom: 40px;
   display: block;
-  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%), 0 1px 2px rgb(0 0 0 / 10%) !important;
-  border: 1px solid #435162;
   padding: 20px;
   background-color: #3a4656;
 }
 
 #container {
   margin: auto;
-  width: 600px;
+  width: 642px;
+  padding: 60px 80px 40px;
+}
+
+.shadow-outline {
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%), 0 1px 2px rgb(0 0 0 / 10%) !important;
+  border: 1px solid #435162;
+  border-radius: 12px;
 }
 
 .row-item {
@@ -22,11 +27,20 @@
   margin: auto 15px;
 }
 
-.slider-value {
-  margin-right: 20px;
+.row-item > .slider-value {
+  margin-right: 15px;
   margin-left: 0;
   width: 4ch;
   text-align: center;
+}
+
+#square {
+  width: 300px;
+  height: 300px;
+  border: 4px solid #2f75ff;
+  background-color: #2f74ff47;
+  margin: 50px auto;
+  cursor: pointer;
 }
 
 input[type="range"] {
@@ -49,7 +63,65 @@ input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.5);
 }
 
+.keyframe-input {
+  padding: 20px;
+  margin-bottom: 40px;
+  background-color: rgb(38, 48, 61);
+}
+
+.syntax {
+  margin: 0 0 15px;
+  color: white;
+  font-size: 16px;
+}
+
+#function {
+  margin-left: 10px;
+  background-color: rgb(44 56 72);
+  border-radius: 4px;
+  width: calc(100% - 40px);
+  color: #ddd;
+}
+
+#output {
+  color: white;
+  margin: auto;
+  width: 642px;
+  padding: 60px 80px;
+}
+
+#output > p {
+  margin: 0 0 5px;
+}
+
+#output-text {
+  margin-left: 40px;
+}
+
+.text-container {
+  background-color: rgb(38, 48, 61);
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+#frame-counter {
+  color: white;
+  font-size: 24px;
+  margin: auto 40px;
+}
+
+.highlight {
+  color: #6f9fff;
+}
+
 body {
   background-color: rgb(44 56 72);
   font: 400 14px / 20px Source Sans Pro, sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes start {
+  0% {
+    transform: translateX(-100vw);
+  }
 }

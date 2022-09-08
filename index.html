@@ -12,29 +12,71 @@
 </head>
 
 <body>
-    <div id="container">
+    <div id="animation"></div>
+    <div id="container" class="shadow-outline">
         <div id="graph"></div>
-        <div class="row-item">
-            <span class="slider-value" id="spring-value">0.1</span>
-            <input id="spring-force" type="range" min="0.02" max="2" value="0.1" class="slider" step="0.01" id="myRange">
-            <span>Spring force</span>
+        <div class="sliders">
+            <div class="row-item">
+                <span class="slider-value" id="spring-value">0.1</span>
+                <input id="spring-force" type="range" min="0.02" max="2" value="0.1" class="slider" step="0.01">
+                <span>Spring force</span>
+            </div>
+            <div class="row-item">
+                <span class="slider-value" id="damp-value">0.36</span>
+                <input id="spring-damp" type="range" min="0" max="1" value="0.36" class="slider" step="0.01">
+                <span>Damping force</span>
+            </div>
+            <div class="row-item">
+                <span class="slider-value" id="velocity-value">0</span>
+                <input id="init-velocity" type="range" min="-100" max="100" value="0" class="slider" step="1">
+                <span>Initial velocity</span>
+            </div>
+            <div class="row-item">
+                <span class="slider-value" id="position-value">-120</span>
+                <input id="init-position" type="range" min="-200" max="200" value="-120" class="slider" step="1">
+                <span>Initial position</span>
+            </div>
+            <div class="row-item">
+                <span class="slider-value" id="max-velocity-value">20</span>
+                <input id="max-velocity" type="range" min="0" max="200" value="20" class="slider" step="1">
+                <span>Max velocity</span>
+            </div>
+            <div class="row-item">
+                <span class="slider-value" id="exit-point-value">0.1</span>
+                <input id="exit-point" type="range" min="0.01" max="2" value="0.1" class="slider" step="0.01">
+                <span>Exit point</span>
+            </div>
+            <br>
+            <div class="row-item">
+                <input id="reverse-toggle" type="checkbox">
+                <span>Reverse</span>
+            </div>
+            <br>
+            <div class="row-item">
+                <span class="slider-value" id="quality-value">100%</span>
+                <input id="quality" type="range" min="0" max="3" value="3" class="slider" step="1">
+                <span>Quality</span>
+                <div id="frame-counter"></div>
+            </div>
         </div>
-        <div class="row-item">
-            <span class="slider-value" id="damp-value">0.1</span>
-            <input id="spring-damp" type="range" min="0" max="1" value="0.1" class="slider" step="0.01" id="myRange">
-            <span>Damping force</span>
+    </div>
+    <div id="square"></div>
+    <div id="output" class="shadow-outline">
+        <div class="keyframe-input shadow-outline">
+            <p class="syntax">function generateKeyframe ( <span class="highlight">i</span>, <span class="highlight">pos</span>, <span class="highlight">vel</span>, <span class="highlight">acc</span> ) {</p>
+            <textarea name="function" id="function" cols="30" rows="10" class="shadow-outline" spellcheck="false">
+const percent = round(map(i,0,points.length,0,100)*100)/100 + '%';
+pos = round(pos * 100) / 100;
+
+return percent + ' {transform: translateX(' + pos + 'vw) skewX(' + constrain(-pos*3, -60, 60) + 'deg);}';
+            </textarea>
+            <p class="syntax">}</p>
         </div>
-        <div class="row-item">
-            <span class="slider-value" id="velocity-value">0</span>
-            <input id="init-velocity" type="range" min="-10" max="10" value="0" class="slider" step="0.2" id="myRange">
-            <span>Initial velocity</span>
+        <div class="text-container shadow-outline" onclick="copyText()">
+            <p>@keyframes spring-anim {</p>
+            <div id="output-text"></div>
+            <p>}</p>
         </div>
-        <div class="row-item">
-            <span class="slider-value" id="position-value">10</span>
-            <input id="init-position" type="range" min="-10" max="10" value="10" class="slider" step="0.2" id="myRange">
-            <span>Initial position</span>
-        </div>
-        <div class="output"></div>
     </div>
     <script src="input.js"></script>
 </body>
