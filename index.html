@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>replit</title>
+    <title>CSS spring</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico?">    
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="script.js"></script>
     <script src="graphing.js"></script>
@@ -68,7 +69,9 @@
 const percent = round(map(i,0,points.length,0,100)*100)/100 + '%';
 pos = round(pos * 100) / 100;
 
-return percent + ' {transform: translateX(' + pos + 'vw) skewX(' + constrain(-pos*3, -60, 60) + 'deg);}';
+const keyframe = '{transform: translateX(' + pos + 'vw) skewX(' + constrain(-pos*3, -60, 60) + 'deg);}'
+
+return percent + ' ' + keyframe;
             </textarea>
             <p class="syntax">}</p>
         </div>

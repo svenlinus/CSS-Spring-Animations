@@ -26,7 +26,8 @@ let numKeyFrames = 0;
 let generateKeyframe = (i, pos, vel, acc) => {
   const percent = round(map(i, 0, points.length, 0, 100) * 100) / 100 + '%';
   pos = round(pos * 100) / 100;
-  return percent + ' {transform: translateX(' + pos + 'vw) skewX(' + constrain(-pos*3, -60, 60) + 'deg);}';
+  const keyframe = '{transform: translateX(' + pos + 'vw) skewX(' + constrain(-pos*3, -60, 60) + 'deg);}'
+  return percent + ' ' + keyframe;
 }
 
 
@@ -79,7 +80,7 @@ function renderSpringGraph() {
       break;
     }
   }
-  setWindow(-5, iter * (xmax-xmin)/points.length, rangeMin, rangeMax);
+  setWindow(-5, iter, rangeMin, rangeMax);
 
   background('#3a4656');
   strokeWeight(1);
@@ -95,7 +96,7 @@ function renderSpringGraph() {
   vertex(p1.i, p1.j);
   for(let i = 0; i < points.length; i ++) {
     const j = reverse ? points.length - i - 1 : i;
-    const p = worldToScreen(i * (xmax-xmin)/points.length, points[j].p);
+    const p = worldToScreen(i, points[j].p);
     // stroke(255);
     // circle(p.i, p.j, 6);
     curveVertex(p.i, p.j);
