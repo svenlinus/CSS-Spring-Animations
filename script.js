@@ -13,6 +13,7 @@ let acceleration = 0;
 
 let exitPoint = 0.1;
 let reverse = false;
+let showFrames = false;
 
 let quality = 1;
 
@@ -38,22 +39,27 @@ function updateGenerateKeyframe() {
   renderSpringGraph();
 }
 
-function updateReverse(e) {
-  reverse = e.target.checked;
-  renderSpringGraph();
-}
-
-
 function setup() {
   document.getElementById('square').addEventListener('click', playAnimation);
   document.querySelector('.sliders').addEventListener('mouseup', playAnimation);
   document.getElementById('function').addEventListener('focusout', updateGenerateKeyframe);
   document.getElementById('reverse-toggle').addEventListener('input', updateReverse);
+  document.getElementById('frame-toggle').addEventListener('input', updateShowFrame);
   const cnv = createCanvas(600, 300);
   cnv.parent('graph');
   cnv.class('shadow-outline');
   background('#3a4656');
   setWindow(-5, 100, -14, 23);
+  renderSpringGraph();
+}
+
+function updateReverse(e) {
+  reverse = e.target.checked;
+  renderSpringGraph();
+}
+
+function updateShowFrame(e) {
+  showFrames = e.target.checked;
   renderSpringGraph();
 }
 
@@ -67,13 +73,15 @@ function renderSpringGraph() {
 
   let iter = 0;
   while (iter < 1000) {
-    const r = 6 * ystep;
+    if (iter % quality === 0) {
+      points.push({p: position, v: velocity, a: acceleration});
+    }
+    const r = 16 * ystep;
     if (position > rangeMax) {
       rangeMax = position + r;
     } else if (position < rangeMin) {
       rangeMin = position - r;
     }
-    points.push({p: position, v: velocity, a: acceleration});
     springEquation();
     iter ++;
     if (abs(velocity) <= exitPoint && abs(position) <= exitPoint && iter > 20) {
@@ -96,14 +104,17 @@ function renderSpringGraph() {
   vertex(p1.i, p1.j);
   for(let i = 0; i < points.length; i ++) {
     const j = reverse ? points.length - i - 1 : i;
-    const p = worldToScreen(i, points[j].p);
-    // stroke(255);
-    // circle(p.i, p.j, 6);
-    curveVertex(p.i, p.j);
-    if (i % quality === 0) {
-      cssText += generateKeyframe(i, points[j].p, points[j].v, points[j].a) + '\n';
-      numKeyFrames ++;
+    const p = worldToScreen(i * quality, points[j].p);
+    if (showFrames) {
+      strokeWeight(1);
+      stroke(255);
+      circle(p.i, p.j, 8);
+      vertex(p.i, p.j);
+    } else {
+      curveVertex(p.i, p.j);
     }
+    cssText += generateKeyframe(i, points[j].p, points[j].v, points[j].a) + '\n';
+    numKeyFrames ++;
   }
   const p2 = reverse ? worldToScreen(xmax, points[0].p) : worldToScreen(xmax, points[points.length - 1].p);
   vertex(p2.i, p2.j);
