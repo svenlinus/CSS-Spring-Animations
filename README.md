@@ -8,7 +8,11 @@ Manipulate "generateKeyframe" to animate any css property:
 * replace "translateX()" and "skewX()" with your desired css property
 * add units
 * use arithmetic, map(), constrain(), any Math function, or any p5.js function to fit pos/vel/acc to your desired range
-* Format: 'transform: {property}(' + {argument} + '{unit});'
+* Examples:
+  * '{ transform: translateX(' + pos + 'px); }'
+    * element will move along x-axis according to graph
+  * '{ transform: scaleY(' + map(vel, -20, 20, 0, 2) + '); }'
+    * element will stretch and contract relative to its velocity
 
 GenerateKeyFrame Arguments:
 
