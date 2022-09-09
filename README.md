@@ -12,7 +12,7 @@ Manipulate "generateKeyframe" to animate any css property:
   * '{ transform: translateX(' + pos + 'px); }'
     * element will move along x-axis according to graph
   * '{ transform: scaleY(' + map(vel, -20, 20, 0, 2) + '); }'
-    * element will stretch and contract relative to its velocity
+    * element will stretch and contract relative to its velocity (mapped between 0 and 2)
 
 GenerateKeyFrame Arguments:
 
